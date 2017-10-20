@@ -5,7 +5,6 @@ import time
 today = date.today()
 event_in_future = date(2017, 12, 18)
 
-print event_in_future - today
 
 def days_until_event(future_event):
     return future_event - date.today()
@@ -38,13 +37,6 @@ for name, date in cleaned_dates.items():
      print '{} left until {}.'.format(timeleft, name)
 
 '''
-     def return_date(data):
-
-    year = int(data[0])
-    month = int(data[1])
-    day = int(data[2])
-    d = date(year, month, day)
-    return d
         
 ##event_entry = ''
 ##with open('events.txt', 'a') as handle:
@@ -62,25 +54,5 @@ for name, date in cleaned_dates.items():
 ##
 ##        handle.write(event_entry)
 ##        
-
-
-
-
-Getting data from .txt file
-
->>> data = mylist[0].strip().split(':')
-# get numbers
->>> data[0:3]
-# get event name
->>> data[-1]
-
-def return_date(data):
-
-    year = int(data[0])
-    month = int(data[1])
-    day = int(data[2])
-    d = date(year, month, day)
-    return d
-    
 
 '''
