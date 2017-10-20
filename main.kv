@@ -1,0 +1,56 @@
+
+<MainScreen>:
+
+	BoxLayout:
+		spacing: 10
+		padding: 20
+		orientation: 'vertical'
+
+		Countdown:
+			cols: 2
+			#GridLayout:
+				#id:_displayshit
+		BoxLayout:
+			size_hint: 1, 1
+
+		BoxLayout:
+			size_hint: 1, .2
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					size_hint: 1, .2
+					text: 'Enter Name of Event'
+				TextInput:
+					id: _event_name	
+			Label:
+				id: _display_date
+
+			Button:
+				text: 'Select Date'
+				on_release: root.manager.current = 'cal'
+
+		BoxLayout: 
+
+			size_hint: 1, .1
+			Button:
+				text: 'Submit Event'
+				on_release: root.create_event()
+			
+<CalendarScreen>:
+
+	BoxLayout:
+		padding: 10
+		spacing: 20
+		orientation: 'vertical'
+		Calendar:
+			id: _selected_date
+		Button:
+			size_hint: 1, .2
+			text: 'Confirm Date'
+			on_press: picked_date = _selected_date
+			on_release: root.manager.current = 'main'
+			on_release: app.pass_stuff(_selected_date)
+			
+
+
+
