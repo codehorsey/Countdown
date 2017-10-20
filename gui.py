@@ -29,7 +29,7 @@ class Countdown(GridLayout):
 
     def update(self, dt):
         # This can't be the way to do this lol?!?!
-        self.events_dict = events.main()
+        # self.events_dict = events.main()
 
         self.clear_widgets()
         for name, date in self.events_dict.items():
@@ -57,6 +57,7 @@ class MainScreen(Screen):
         events.add_event(date, name)
         # Would love to update dict in other class. How do I access it?!?!?!?!
         # getting around this by calling events.main every single update to re-read file.
+        self.ids._countdown.events_dict = events.main()
 
         
     def update(self, dt):
