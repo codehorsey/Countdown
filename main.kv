@@ -7,9 +7,9 @@
 		orientation: 'vertical'
 
 		Countdown:
+			id: _countdown
 			cols: 2
-			#GridLayout:
-				#id:_displayshit
+			
 		BoxLayout:
 			size_hint: 1, 1
 
@@ -47,9 +47,9 @@
 		Button:
 			size_hint: 1, .2
 			text: 'Confirm Date'
-			on_press: picked_date = _selected_date
+			on_release: root.picked_date = _selected_date.active_date
 			on_release: root.manager.current = 'main'
-			on_release: app.pass_stuff(_selected_date)
+
 			
 
 

@@ -28,9 +28,6 @@ class Countdown(GridLayout):
         Clock.schedule_interval(self.update, 1.0/10)
 
     def update(self, dt):
-        # This can't be the way to do this lol?!?!
-        # self.events_dict = events.main()
-
         self.clear_widgets()
         for name, date in self.events_dict.items():
             countdown = events.days_until_event(date)
@@ -46,7 +43,7 @@ class MainScreen(Screen):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
         Clock.schedule_interval(self.update, 1.0/10)
-        self.ids._display_date.text = 'Coming SOon'
+        # self.ids._display_date.text = 'Coming SOon'
 
     def create_event(self):
         # [day, month, year]
@@ -55,36 +52,24 @@ class MainScreen(Screen):
         name = self.ids._event_name.text
         # adds event to file using calendar widget
         events.add_event(date, name)
-        # Would love to update dict in other class. How do I access it?!?!?!?!
-        # getting around this by calling events.main every single update to re-read file.
+        # update dict
         self.ids._countdown.events_dict = events.main()
 
         
     def update(self, dt):
-        # only way I know how to get date from calendar switching screens besides 
-        # lumping all under one big root and using ids...
-        a = App.get_running_app()
-        try:
-            self.ids._display_date.text = str(a.selected_date.active_date)
-        except:
-            pass
-
+        calscreen = self.manager.get_screen('cal')
+        calscreen.picked_date
+        self.ids._display_date.text = str(calscreen.picked_date)
+       
 class CalendarScreen(Screen):
     picked_date = ObjectProperty()
-    pass
 
 class MainApp(App):
-    selected_date = ObjectProperty()
     def build(self):  
         sm = ScreenManager()
         sm.add_widget(MainScreen(name='main'))
         sm.add_widget(CalendarScreen(name='cal'))
         return sm
-
-    def pass_stuff(self, date):
-        self.selected_date = date
-       
-
 
 a = MainApp()
 a.run()
